@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #555;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 60%; /* Уменьшаем ширину */
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #5cb85c;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"],
+        a {
+            display: inline-block;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease; /* Плавный переход цвета */
+            margin: 0 20px; /* Отступы между кнопками */
+        }
+
+        /* Стили для кнопки "Редактировать" */
+        a {
+            background-color: #337ab7;
+        }
+
+        a:hover {
+            background-color: #23527c;
+        }
+
+        /* Стили для кнопки "Удалить" */
+        input[type="submit"] {
+            background-color: #d9534f;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Пользователь</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${user.getName()}">VALUE</td>
+        <td th:text="${user.getId()}">VALUE</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="button-container">
+    <a th:href="@{/users/id/edit(id=${user.getId()})}">Редактировать</a>
+    <form th:method="POST" th:action="@{/users/id(id=${user.getId()})}">
+        <input type="submit" value="Удалить"/>
+    </form>
+</div>
+</body>
+</html>
